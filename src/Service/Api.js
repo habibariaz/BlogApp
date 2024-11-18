@@ -6,7 +6,7 @@ const API_URL = 'https://blog-app-backend-updated.vercel.app';
 
 const axiosInstance = axios.create({
     baseURL: API_URL,
-    timeout: 10000,
+    timeout: 30000, // Increased timeout to 30 seconds
     headers: {
         "Accept": "application/json, multipart/form-data",
         "Content-Type": "application/json"
