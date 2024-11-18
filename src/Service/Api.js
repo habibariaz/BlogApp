@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_NOTIFICATION_MESSAGES, SERVICE_URL } from '../Constants/Config'
 import { getAccessToken, getType } from '../Utils/Common_utils';
 
-const API_URL = 'blog-app-backend-updated.vercel.app';
+const API_URL = 'https://blog-app-backend-updated.vercel.app/';
 
 const axiosInstance = axios.create({
     baseURL: API_URL,
