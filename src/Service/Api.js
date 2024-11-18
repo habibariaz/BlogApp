@@ -10,7 +10,8 @@ const axiosInstance = axios.create({
     headers: {
         "Accept": "application/json, multipart/form-data",
         "Content-Type": "application/json"
-    }
+    },
+     withCredentials: true  // This ensures cookies are sent with requests
 });
 
 // Request interceptor
