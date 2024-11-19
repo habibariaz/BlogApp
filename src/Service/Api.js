@@ -110,9 +110,13 @@ for (const [key, value] of Object.entries(SERVICE_URL)) {
             data: value.method === "DELETE" ? {} : body,
             responseType: value.responseType || 'json', // Default responseType
             //authenticate access token
-            headers: {
-                Authorization: getAccessToken()
+            // headers: {
+            //     Authorization: getAccessToken()
                 
+            // },
+             headers: {
+                Authorization: accessToken ? `Bearer ${accessToken}` : '', // Only set Authorization header if token exists
+                'Content-Type': 'application/json'
             },
             // headers: {
             //     Authorization: `Bearer ${getAccessToken()}`,  // Correct format for token
