@@ -18,7 +18,7 @@ import Update from './Components/Create/Update';
 
 const PrivateRoute = ({ isAuthenticated, ...props }) => {
   const token = sessionStorage.getItem('accessToken');
-  return isAuthenticated && token ?
+  return isAuthenticated || token ?
     <>
       <Outlet />
     </>
