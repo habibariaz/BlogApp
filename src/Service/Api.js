@@ -106,13 +106,14 @@ for (const [key, value] of Object.entries(SERVICE_URL)) {
             data: value.method === "DELETE" ? {} : body,
             responseType: value.responseType || 'json', // Default responseType
             //authenticate access token
-            // headers: {
-            //     // authorization: getAccessToken()
+            headers: {
+                authorization: getAccessToken()
                 
-            // },
-             headers: {
-                authorization: `Bearer ${getAccessToken()}`, // Corrected format
             },
+            //  headers: {
+            //     authorization: `Bearer ${getAccessToken()}`, // Corrected format
+            // },
+            
             TYPE: getType(value, body),
 
             onUploadProgress: function (progressEvent) {
