@@ -101,7 +101,8 @@ for (const [key, value] of Object.entries(SERVICE_URL)) {
             //     "Authorization": accessToken ? `Bearer ${accessToken}` : '', // Only set Authorization header if token exists
             // },
             headers: {
-                Authorization: `Bearer ${getAccessToken()}`,  // Correct format for token
+                // Check if a valid access token is available before including it in the header
+                Authorization: getAccessToken() ? `Bearer ${getAccessToken()}` : '',  // Add token if available
             },
             
             TYPE: getType(value, body),
