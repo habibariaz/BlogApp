@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_NOTIFICATION_MESSAGES, SERVICE_URL } from '../Constants/Config'
 import { getAccessToken, getType } from '../Utils/Common_utils';
 
-// const API_URL = 'https://blog-app-backend-updated.vercel.app';
+const API_URL = 'https://blog-app-backend-updated.vercel.app';
 
 // const axiosInstance = axios.create({
 //     baseURL: API_URL,
@@ -14,17 +14,21 @@ import { getAccessToken, getType } from '../Utils/Common_utils';
 //      withCredentials: true  // This ensures cookies are sent with requests
 // });
 
-const API_URL = process.env.NODE_ENV === 'production' 
-    ? 'https://blog-app-backend-updated.vercel.app/'  // Deployed backend URL
-    : 'http://localhost:8000';  // Local backend URL
+// const API_URL = process.env.NODE_ENV === 'production' 
+//     ? 'https://blog-app-backend-updated.vercel.app/'  // Deployed backend URL
+//     : 'http://localhost:8000';  // Local backend URL
 
 const axiosInstance = axios.create({
     baseURL: API_URL,
     timeout: 10000,
-    headers: {
-        "Accept": "application/json, multipart/form-data",
-        "Content-Type": "application/json"
+     headers: {
+        "Accept": "application/json", // Default to JSON responses
+        "Content-Type": "application/json" // JSON payloads by default
     },
+    // headers: {
+    //     "Accept": "application/json, multipart/form-data",
+    //     "Content-Type": "application/json"
+    // },
     withCredentials: true  // Required for cross-origin cookies
 });
 
