@@ -10,7 +10,8 @@ const axiosInstance = axios.create({
      headers: {
 //      "Accept": "application/json, multipart/form-data",
         "Accept": "application/json", // Default to JSON responses
-        "Content-Type": "application/json" // JSON payloads by default
+        "Content-Type": "application/json", // JSON payloads by default
+        'Authorization': `Bearer ${getAccessToken()}`
     },
     withCredentials: true  // Required for cross-origin cookies
 });
