@@ -28,6 +28,17 @@ const axiosInstance = axios.create({
     withCredentials: true  // Required for cross-origin cookies
 });
 
+axiosInstance.interceptors.request.use(
+    (config) => {
+        const token = sessionStorage.getItem('accessToken');
+        if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => Promise.reject(error)
+);
+
 // Request interceptor
 axiosInstance.interceptors.request.use(
     //passing params (body,query) from Config.js file
