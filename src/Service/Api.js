@@ -83,19 +83,27 @@ const processError = (error) => {
         };
     }
 };
+
 const API = {};
 for (const [key, value] of Object.entries(SERVICE_URL)) {
-    API[key] = (body, showUploadProgress, showDownloadProgress) => {
-        const accessToken = getAccessToken();  // Get the access token
-
-        return axiosInstance({
+    API[key] = (body, showUploadProgress, showDownloadProgress) =>
+        axiosInstance({
             method: value.method,
             url: value.url,
             data: value.method === "DELETE" ? {} : body,
             responseType: value.responseType || 'json', // Default responseType
-             headers: {
-              "Authorization": accessToken ? `Bearer ${accessToken}` : '', // Preferred format
+            //authenticate access token
+            // headers: {
+            //     Authorization: getAccessToken()
+                
+            // },
+            //  headers: {
+            //     "Authorization": accessToken ? `Bearer ${accessToken}` : '', // Only set Authorization header if token exists
+            // },
+            headers: {
+                Authorization: `Bearer ${getAccessToken()}`,  // Correct format for token
             },
+            
             TYPE: getType(value, body),
 
             onUploadProgress: function (progressEvent) {
@@ -111,48 +119,6 @@ for (const [key, value] of Object.entries(SERVICE_URL)) {
                 }
             }
         });
-    };
 }
 
 export { API };
-
-// const API = {};
-// for (const [key, value] of Object.entries(SERVICE_URL)) {
-//     API[key] = (body, showUploadProgress, showDownloadProgress) =>
-//          const accessToken = getAccessToken(); 
-//         axiosInstance({
-//             method: value.method,
-//             url: value.url,
-//             data: value.method === "DELETE" ? {} : body,
-//             responseType: value.responseType || 'json', // Default responseType
-//             //authenticate access token
-//             // headers: {
-//             //     Authorization: getAccessToken()
-                
-//             // },
-//              headers: {
-//                 Authorization: accessToken ? `Bearer ${accessToken}` : '', // Only set Authorization header if token exists
-//                 'Content-Type': 'application/json'
-//             },
-//             // headers: {
-//             //     Authorization: `Bearer ${getAccessToken()}`,  // Correct format for token
-//             // },
-            
-//             TYPE: getType(value, body),
-
-//             onUploadProgress: function (progressEvent) {
-//                 if (showUploadProgress) {
-//                     let percentageCompleted = Math.round(progressEvent.loaded * 100 / progressEvent.total);
-//                     showUploadProgress(percentageCompleted);
-//                 }
-//             },
-//             onDownloadProgress: function (progressEvent) {
-//                 if (showDownloadProgress) {
-//                     let percentageCompleted = Math.round(progressEvent.loaded * 100 / progressEvent.total);
-//                     showDownloadProgress(percentageCompleted);
-//                 }
-//             }
-//         });
-// }
-
-// export { API };
