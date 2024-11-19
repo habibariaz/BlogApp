@@ -21,7 +21,8 @@ axiosInstance.interceptors.request.use(
         if (config.TYPE.params) {
             config.params = config.TYPE.params //it is query
         } else if (config.TYPE.query) {
-            config.url = config.url + '/' + config.TYPE.query; //it is params
+              config.url = `${config.url}/${config.TYPE.query}`; // path params
+            // config.url = config.url + '/' + config.TYPE.query; //it is params
 
         }
         return config;
